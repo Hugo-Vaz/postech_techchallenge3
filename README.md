@@ -6,7 +6,7 @@ O objetivo deste projeto é identificar a correlação entre os dados dos usuár
 
 ### Grupo de Dados Utilizado:
 Usaremos o dataset **MovieLens 1M**:
-- [movie_lens-1m]([https://www.tensorflow.org/datasets/catalog/movie_lens?hl=pt-br#movie_lens1m-ratings](https://files.grouplens.org/datasets/movielens/ml-1m.zip))
+- [movie_lens-1m](https://files.grouplens.org/datasets/movielens/ml-1m.zip])
 
 ## Etapas do Projeto:
 
