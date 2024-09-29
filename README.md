@@ -10,8 +10,8 @@ Usaremos o dataset **MovieLens 1M**:
 
 ## Etapas do Projeto:
 
-1. **Correlacionar os dois datasets (usuários e filmes)**:
-   - O primeiro passo será integrar os dados dos usuários e suas avaliações com os dados dos filmes.
+1. **Correlacionar os 3 datasets (usuários, ratings e filmes)**:
+   - O primeiro passo será integrar os dados dos usuários, suas avaliações e os dados dos filmes.
 
 2. **Classificação das Notas dos Filmes**:
    - As avaliações dos usuários serão agrupadas para simplificar a análise:
@@ -22,7 +22,7 @@ Usaremos o dataset **MovieLens 1M**:
 
 3. **Escolha de um Modelo Supervisionado**:
    - Será selecionado um modelo de machine learning supervisionado.
-   - O modelo escolhido será aquele que apresentar o melhor desempenho e acurácia nas previsões.
+   - O modelo escolhido será aquele que apresentar o melhor desempenho, e menor taxa de erro nas previsões.
 
 4. **Testes e Resultados**:
    - Todos os testes realizados serão salvos e documentados, pois fazem parte do processo de avaliação.
@@ -35,8 +35,8 @@ Usaremos o dataset **MovieLens 1M**:
 6. **Documentação do Processo**:
    - Todo o processo de exploração de dados, testes e escolha do modelo será documentado e codificado em um notebook, facilitando a execução e visualização por parte do avaliador.
 
-7. **Armazenamento do Modelo (A SER DEFINIDO)**:
-   - Após o treinamento, o modelo será salvo em um arquivo, utilizando o modulo [pickle](https://docs.python.org/3/library/pickle.html#module-pickle). 
+7. **Armazenamento do Modelo**:
+   - Após o treinamento, o modelo será salvo no formato arquivo na S3, fazendo uso do modulo [pickle](https://docs.python.org/3/library/pickle.html#module-pickle) do Python. 
 
 8. **Gravação de Vídeo**:
    - Um vídeo será gravado detalhando todo o processo de construção do projeto, incluindo desde a coleta de dados até a implementação da API. Antes disso, um roteiro será preparado para guiar a gravação.
