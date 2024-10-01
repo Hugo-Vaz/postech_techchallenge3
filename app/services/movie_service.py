@@ -8,23 +8,33 @@ from dotenv import load_dotenv
 from datetime import datetime
 
 load_dotenv()
-
+    
 class MovieService:
-    def get_movies_from_s3(self):
-        bucket_name = 'techchallengegp53'
-        s3_file_key = 'raw/movies.dat'
-        local_file_path = './raw/ml-1m/movies.dat' 
 
+    # Conectando ao S3 (tem que pegar no labs a key e colocar no .nev. 
+    # Lembre-se de mudar o prefixo padrão AWS para S3)
+    def get_s3_client(self):
+        """Retorna um cliente S3 configurado com as credenciais."""
         try:
-            # Conectando ao S3 (tem que pegar no labs a key e colocar no .nev. 
-            # Lembre-se de mudar o prefixo padrão AWS para S3)
             s3 = boto3.client(
                 's3',
                 aws_access_key_id=os.getenv('S3_ACCESS_KEY_ID'),
                 aws_secret_access_key=os.getenv('S3_SECRET_ACCESS_KEY'),
                 aws_session_token=os.getenv('S3_SESSION_TOKEN')
             )
-            
+            return s3
+        except NoCredentialsError:
+            print("Credenciais AWS não encontradas.")
+            return None
+
+    def get_movies_from_s3(self):
+        bucket_name = 'techchallengegp53'
+        s3_file_key = 'raw/movies.dat'
+        local_file_path = './raw/ml-1m/movies.dat' 
+
+        try:
+            s3 = self.get_s3_client()
+        
             # Baixando o arquivo do S3
             s3.download_file(bucket_name, s3_file_key, local_file_path)
             print(f"Arquivo baixado do S3: {local_file_path}")
@@ -72,12 +82,32 @@ class MovieService:
         return dados_encodados
 
     def load_model(self):
+        bucket_name = 'techchallengegp53'
+        s3_file_key = 'modelo/XGBoost.sav'  # Caminho no bucket S3
+        local_file_path = './playground/modelo-xgboost.sav'  # Caminho local
+
         try:
-            with open('./playground/modelo-xgboost.sav', 'rb') as f:
+            # tentar baixar o modelo
+            s3 = self.get_s3_client()
+            s3.download_file(bucket_name, s3_file_key, local_file_path)
+            print(f"Modelo baixado do S3: {local_file_path}")
+        except (NoCredentialsError, ClientError) as e:
+            print(f"Erro ao conectar ao bucket: {e}")
+            
+            if os.path.exists(local_file_path):
+                # Se falhar, tentar carregar o modelo localmente
+                print(f"Carregando modelo local: {local_file_path}")
+            else:
+                print("Modelo não encontrado no S3 e nem localmente.")
+                return None
+
+        # Carregar o modelo XGBoost do caminho local (seja ele baixado ou já existente)
+        try:
+            with open(local_file_path, 'rb') as f:
                 modelo = pickle.load(f)
             return modelo
         except FileNotFoundError:
-            print("Modelo XGBoost não encontrado.")
+            print("Modelo XGBoost não encontrado no caminho loca.")
             return None
 
     def predict_ratings(self, modelo, dados_encodados):
@@ -105,9 +135,6 @@ class MovieService:
 
     def get_recommended_movies(self, genre, age, occupation):
         
-        print(genre)
-        print(age)
-        print(occupation)
         # Obter Arquivos
         file_path = self.get_movies_from_s3()
 
