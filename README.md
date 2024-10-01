@@ -36,8 +36,5 @@ Usaremos o dataset **MovieLens 1M**:
    - Todo o processo de exploração de dados, testes e escolha do modelo será documentado e codificado em um notebook, facilitando a execução e visualização por parte do avaliador.
 
 7. **Armazenamento do Modelo**:
-   - Após o treinamento, o modelo será salvo no formato arquivo na S3, fazendo uso do modulo [pickle](https://docs.python.org/3/library/pickle.html#module-pickle) do Python. 
-
-8. **Gravação de Vídeo**:
-   - Um vídeo será gravado detalhando todo o processo de construção do projeto, incluindo desde a coleta de dados até a implementação da API. Antes disso, um roteiro será preparado para guiar a gravação.
+   - Após o treinamento, o modelo será salvo no formato .sav na S3, fazendo uso do modulo [pickle](https://docs.python.org/3/library/pickle.html#module-pickle) do Python. 
 
