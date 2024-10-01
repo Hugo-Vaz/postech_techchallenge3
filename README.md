@@ -1,8 +1,8 @@
-# Projeto de Identificação de Preferências de Filmes e Sugerir Grupo Alvo
+# Projeto de Identificação e sugestão de filmes
 
 ## Problema a ser Resolvido
 
-O objetivo deste projeto é identificar a correlação entre os dados dos usuários (idade, gênero, nacionalidade, ocupação) e suas preferências por filmes, com base nas avaliações feitas. A partir desse modelo, criaremos uma API que, com base em alguns dados de um usuário, seja capaz de sugerir filmes adequados ou, com base nos dados de um filme, indicar o grupo alvo ideal para aquele filme.
+O objetivo deste projeto é identificar a correlação entre os dados dos usuários (idade, gênero e ocupação) e suas preferências por filmes, com base nas avaliações feitas por outros usuarios parecidos. A partir desse modelo, criaremos uma API que, com base em alguns dados de um usuário, seja capaz de sugerir filmes que talvez sejam do seu interesse, como o as recomendações da Netflix, por exemplo.
 
 ### Grupo de Dados Utilizado:
 Usaremos o dataset **MovieLens 1M**:
@@ -28,13 +28,12 @@ Usaremos o dataset **MovieLens 1M**:
    - Todos os testes realizados serão salvos e documentados, pois fazem parte do processo de avaliação.
 
 5. **Criação da API**:
-   - Após a definição e treinamento do modelo, uma API será construída com dois métodos principais:
-     - **Sugerir o grupo alvo para um novo filme**: Com base em seus dados, prever o público ideal.
-     - **Sugerir filmes para um usuário fictício**: Com base em informações como gênero, idade e nacionalidade, sugerir N filmes adequados.
+   - Após a definição e treinamento do modelo, uma API será construída com o principal objetivo de:
+     - **Sugerir filmes para um usuário fictício**: Com base em informações como gênero, idade e ocupação, sugerir top 5 filmes adequados.
 
 6. **Documentação do Processo**:
    - Todo o processo de exploração de dados, testes e escolha do modelo será documentado e codificado em um notebook, facilitando a execução e visualização por parte do avaliador.
 
 7. **Armazenamento do Modelo**:
-   - Após o treinamento, o modelo será salvo no formato .sav na S3, fazendo uso do modulo [pickle](https://docs.python.org/3/library/pickle.html#module-pickle) do Python. 
+   - Após o treinamento, o modelo será salvo no formato .sav na S3, fazendo uso do modulo [pickle](https://docs.python.org/3/library/pickle.html#module-pickle) do Python.
 
